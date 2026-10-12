@@ -79,6 +79,8 @@ h2.sec{font-family:var(--display);font-weight:600;font-size:clamp(28px,4vw,36px)
 .chip{padding:8px 14px;border-radius:999px;background:var(--accent-soft);color:var(--ink);font-size:14px}
 
 .samples{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+h3.group{font:600 12px var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin:28px 0 12px}
+#work h3.group:first-of-type{margin-top:0}
 .sample{border:1px solid var(--line);border-radius:12px;padding:20px;background:var(--surface);min-width:0}
 .sample .label{color:var(--muted)}
 .sample h3{font-size:16px;font-weight:600;margin:8px 0 6px}
@@ -285,7 +287,8 @@ footer{padding-top:32px;color:var(--muted);font-size:13px;border-top:1px solid v
   <section id="work">
     <span class="label">Portfolio</span>
     <h2 class="sec">Work samples</h2>
-    <div class="samples protected" id="samples">
+    <h3 class="group">Vacation rental operations</h3>
+    <div class="samples protected">
       <div class="sample">
         <span class="label">Guest messages · 1 of 7</span>
         <h3>Pre-arrival details</h3>
@@ -318,7 +321,105 @@ footer{padding-top:32px;color:var(--muted);font-size:13px;border-top:1px solid v
         </ol>
       </div>
     </div>
-    <p class="note">These are short previews of my own templates. The complete set is available to hiring teams on request.</p>
+    <h3 class="group">Executive assistance</h3>
+    <div class="samples protected">
+      <div class="sample">
+        <span class="label">Daily report · end of day</span>
+        <h3>EOD report</h3>
+        <div class="excerpt">
+          <p><b>Done today:</b> [Task] · [Task] · [Task]</p>
+          <p><b>Needs your decision:</b> [Question, with options A / B]</p>
+          <p><b>Waiting on others:</b> [Person · item · follow-up date]</p>
+          <p><b>Tomorrow:</b> [Key meetings] · [My top 3]</p>
+        </div>
+      </div>
+      <div class="sample">
+        <span class="label">Decision report · within agreed limits</span>
+        <h3>"I handled it"</h3>
+        <div class="excerpt">
+          <p><b>What happened:</b> [One sentence]</p>
+          <p><b>What I decided:</b> [Action taken]</p>
+          <p><b>Why:</b> [Linked to your priority]</p>
+          <p><b>Cost · To undo:</b> [Amount] · [Option, and by when]</p>
+        </div>
+      </div>
+      <div class="sample">
+        <span class="label">Meeting prep · 1 page</span>
+        <h3>Meeting brief</h3>
+        <ul class="checks">
+          <li>Who: names, roles, one line on each</li>
+          <li>Goal: what success looks like</li>
+          <li>Background: last contact, open items</li>
+          <li>Talking points and attachments ready</li>
+        </ul>
+      </div>
+    </div>
+    <h3 class="group">Admin &amp; facilities support</h3>
+    <div class="samples protected">
+      <div class="sample">
+        <span class="label">Vendor request · work order</span>
+        <h3>Service request</h3>
+        <div class="excerpt">
+          <p>Hi [Vendor], we need [service] at [location] by [date].</p>
+          <p>Scope: [details and photos attached] · PO: [number]</p>
+          <p>Please confirm your availability and quote by [date]. Thank you!</p>
+        </div>
+      </div>
+      <div class="sample">
+        <span class="label">PO workflow · 5 steps</span>
+        <h3>PO &amp; invoice follow-up</h3>
+        <ol class="flow">
+          <li>Request approved and PO issued</li>
+          <li>Work scheduled with the vendor</li>
+          <li>Completion confirmed with photos</li>
+          <li>Invoice matched to the PO</li>
+          <li>Submitted for payment and filed</li>
+        </ol>
+      </div>
+      <div class="sample">
+        <span class="label">Monthly checklist · facilities</span>
+        <h3>Building upkeep</h3>
+        <ul class="checks">
+          <li>Open work orders reviewed and updated</li>
+          <li>Vendor insurance and contracts current</li>
+          <li>Recurring services confirmed for next month</li>
+          <li>Monthly summary sent to the manager</li>
+        </ul>
+      </div>
+    </div>
+    <h3 class="group">Service excellence · from my flight attendant years</h3>
+    <div class="samples protected">
+      <div class="sample">
+        <span class="label">Service recovery · 4 steps</span>
+        <h3>When something goes wrong</h3>
+        <ol class="flow">
+          <li>Listen fully, without interrupting</li>
+          <li>Apologize sincerely; no blame</li>
+          <li>Solve: one clear next step and a time</li>
+          <li>Thank them, and follow up</li>
+        </ol>
+      </div>
+      <div class="sample">
+        <span class="label">Pre-shift readiness · checklist</span>
+        <h3>Prepared before it starts</h3>
+        <ul class="checks">
+          <li>Review today's schedule and VIP notes</li>
+          <li>Confirm special requests and needs</li>
+          <li>Know the backup plan for delays</li>
+          <li>Calm voice, clear words, steady pace</li>
+        </ul>
+      </div>
+      <div class="sample">
+        <span class="label">Shift handoff · 1 message</span>
+        <h3>Nothing falls through</h3>
+        <div class="excerpt">
+          <p><b>Resolved:</b> [Items closed this shift]</p>
+          <p><b>Open:</b> [Item · owner · next step · time]</p>
+          <p><b>Watch for:</b> [Guests or issues needing extra care]</p>
+        </div>
+      </div>
+    </div>
+    <p class="note">These are short previews of my own templates and systems. The complete set is available to hiring teams on request.</p>
   </section>
 
   <section class="values">
@@ -345,7 +446,7 @@ footer{padding-top:32px;color:var(--muted);font-size:13px;border-top:1px solid v
 </div>
 
 <script>
-(function(){var s=document.getElementById('samples');['copy','cut','contextmenu','dragstart'].forEach(function(ev){s.addEventListener(ev,function(e){e.preventDefault();});});})();
+(function(){document.querySelectorAll('.protected').forEach(function(s){['copy','cut','contextmenu','dragstart'].forEach(function(ev){s.addEventListener(ev,function(e){e.preventDefault();});});});})();
 document.getElementById('copyBtn').addEventListener('click', function(){
   var t = document.getElementById('email').textContent, out = document.getElementById('copied');
   function sel(){var r=document.createRange();r.selectNodeContents(document.getElementById('email'));var s=getSelection();s.removeAllRanges();s.addRange(r);out.textContent='Selected. Press Ctrl+C or Cmd+C to copy.';}
