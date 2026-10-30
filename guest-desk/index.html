@@ -1,0 +1,254 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="After-hours guest support for US vacation rental managers by Jyra Capulac.">
+<title>After-Hours Guest Desk</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,500;6..72,600&family=Public+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: a single calm column, a night-band hero, then offers, process, proof and a sample morning report */
+:root{
+  --bg:#F6F7F5; --surface:#FFFFFF; --ink:#18232A; --muted:#55636B; --line:#D9DFDD;
+  --night:#14252E; --night-ink:#E8EEEC; --accent:#2F7A6E; --brass:#B08A4A;
+  --display:"Newsreader", Georgia, "Times New Roman", serif;
+  --body:"Public Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono:"IBM Plex Mono", ui-monospace, Menlo, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0F1A20; --surface:#16242C; --ink:#E6ECEA; --muted:#9AAAA8; --line:#2A3A42;
+  --night:#0A1418; --night-ink:#E6ECEA; --accent:#5DB3A5; --brass:#D2AE6E; color-scheme:dark }}
+:root[data-theme="dark"]{
+  --bg:#0F1A20; --surface:#16242C; --ink:#E6ECEA; --muted:#9AAAA8; --line:#2A3A42;
+  --night:#0A1418; --night-ink:#E6ECEA; --accent:#5DB3A5; --brass:#D2AE6E; color-scheme:dark }
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font:16px/1.6 var(--body)}
+.wrap{max-width:980px;margin:0 auto;padding-left:max(16px, env(safe-area-inset-left, 0px));padding-right:max(16px, env(safe-area-inset-right, 0px))}
+a{color:var(--accent)}
+a:focus-visible,button:focus-visible{outline:2px solid var(--brass);outline-offset:3px}
+h1,h2,h3{font-family:var(--display);font-weight:600;line-height:1.15;text-wrap:balance;margin:0}
+h2{font-size:clamp(1.6rem,3vw,2.1rem)}
+h3{font-size:1.25rem}
+p{margin:0}
+.eyebrow{font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;font-weight:600;color:var(--brass)}
+section{padding-block:56px;border-top:1px solid var(--line)}
+
+/* hero */
+.hero{background:var(--night);color:var(--night-ink);border:0}
+.hero .wrap{padding-block:64px 56px;display:grid;gap:28px}
+.hero h1{font-size:clamp(2.1rem,5.4vw,3.5rem);max-width:17ch}
+.hero .lede{font-size:1.15rem;max-width:60ch;color:color-mix(in srgb,var(--night-ink) 82%,transparent)}
+.who{display:flex;align-items:center;gap:14px}
+.who img{width:56px;height:56px;border-radius:50%;object-fit:cover;border:2px solid var(--brass)}
+.who b{display:block;font-family:var(--display);font-size:1.1rem}
+.who span{font-size:.9rem;opacity:.8}
+.cta{display:flex;flex-wrap:wrap;gap:12px}
+.btn{display:inline-block;padding:12px 20px;border-radius:6px;font-weight:600;text-decoration:none;background:var(--brass);color:#14252E}
+.btn.ghost{background:transparent;color:var(--night-ink);border:1px solid color-mix(in srgb,var(--night-ink) 40%,transparent)}
+
+/* clock strip: US night vs Philippines day */
+.clock{display:grid;gap:8px;max-width:640px}
+.lane{display:grid;grid-template-columns:120px 1fr;gap:12px;align-items:center;font-size:.85rem}
+.bar{position:relative;height:26px;border-radius:4px;background:color-mix(in srgb,var(--night-ink) 10%,transparent);overflow:hidden}
+.bar i{position:absolute;top:0;bottom:0;border-radius:4px}
+.bar .us{left:0;width:100%;background:linear-gradient(90deg,color-mix(in srgb,var(--accent) 55%,transparent),color-mix(in srgb,var(--accent) 30%,transparent))}
+.bar .ph{left:0;width:100%;background:color-mix(in srgb,var(--brass) 45%,transparent)}
+.bar em{position:absolute;inset:0;display:flex;align-items:center;justify-content:space-between;padding-inline:10px;font-style:normal;font-family:var(--mono);font-size:.78rem}
+.clock small{opacity:.75;font-size:.8rem}
+
+/* offers */
+.offers{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px;margin-top:28px}
+.offer{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:24px;display:flex;flex-direction:column;gap:12px;min-width:0}
+.offer.main{border-color:var(--accent);box-shadow:0 1px 0 var(--accent) inset}
+.price{font-family:var(--display);font-size:2rem;line-height:1}
+.price small{font-family:var(--body);font-size:.85rem;color:var(--muted);font-weight:400}
+.offer ul{margin:0;padding-left:1.1em;display:grid;gap:4px;color:var(--muted)}
+.tag{align-self:flex-start;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;font-weight:600;color:var(--accent)}
+
+/* steps */
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:20px;margin-top:24px;counter-reset:s}
+.step{display:grid;gap:6px;min-width:0}
+.step b{font-family:var(--mono);font-size:.8rem;color:var(--brass)}
+.step p{color:var(--muted)}
+
+/* proof */
+.proof{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:20px;margin-top:24px}
+.fact b{display:block;font-family:var(--display);font-size:2.2rem;line-height:1;font-variant-numeric:tabular-nums}
+.fact span{color:var(--muted);font-size:.92rem}
+.tools{margin-top:24px;color:var(--muted);font-size:.95rem;max-width:70ch}
+
+/* sample report */
+.report{margin-top:24px;background:var(--surface);border:1px solid var(--line);border-radius:10px;overflow-x:auto}
+.report pre{margin:0;padding:20px 22px;font:13px/1.65 var(--mono);color:var(--ink);white-space:pre}
+.report .cap{padding:10px 22px;border-top:1px solid var(--line);font-size:.82rem;color:var(--muted)}
+
+/* faq */
+.faq{display:grid;gap:12px;margin-top:20px;max-width:760px}
+details{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:14px 18px}
+summary{cursor:pointer;font-weight:600}
+details p{margin-top:8px;color:var(--muted)}
+
+.close{background:var(--night);color:var(--night-ink);border:0}
+.close .wrap{display:grid;gap:18px}
+.close p{max-width:60ch;opacity:.85}
+.copyrow{display:flex;flex-wrap:wrap;gap:10px;align-items:center;font-family:var(--mono);font-size:.85rem}
+.copyrow code{padding:6px 10px;border-radius:4px;background:color-mix(in srgb,var(--night-ink) 12%,transparent);user-select:all}
+.copyrow button{font:inherit;padding:6px 12px;border-radius:4px;border:1px solid color-mix(in srgb,var(--night-ink) 40%,transparent);background:transparent;color:var(--night-ink);cursor:pointer}
+footer{padding-block:24px;font-size:.82rem;color:var(--muted);text-align:center}
+@media (prefers-reduced-motion: reduce){*{transition:none!important;animation:none!important}}
+</style>
+<style>body{margin:0}img{max-width:100%}</style>
+</head>
+<body>
+
+
+<header class="hero">
+  <div class="wrap">
+    <div class="who"><img src="data:image/jpeg;base64,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" alt="Jyra Capulac"><div><b>Jyra Capulac</b><span>After-hours guest support for US vacation rentals</span></div></div>
+    <h1>Your guests get answers at 2 AM. Your team gets to sleep.</h1>
+    <p class="lede">I answer guest messages, solve check-in problems and coordinate cleaners and maintenance while your US team is offline. You wake up to a short report instead of a pile of unread messages.</p>
+    <div class="cta">
+      <a class="btn" href="https://www.linkedin.com/in/jyracapulac/" target="_blank" rel="noopener">Message me on LinkedIn</a>
+      <a class="btn ghost" href="https://jyraemeriel.github.io" target="_blank" rel="noopener">See my portfolio</a>
+    </div>
+    <div class="clock" aria-label="Coverage: US overnight hours fall in my working day in the Philippines">
+      <div class="lane"><span>Your time (US ET)</span><div class="bar"><i class="us"></i><em><span>10 PM</span><span>night</span><span>4 AM</span></em></div></div>
+      <div class="lane"><span>My time (PH)</span><div class="bar"><i class="ph"></i><em><span>11 AM</span><span>workday</span><span>5 PM</span></em></div></div>
+      <small>Example window. Coverage days and hours are set with you, weekends included if you need them.</small>
+    </div>
+  </div>
+</header>
+
+<main>
+<section>
+  <div class="wrap">
+    <p class="eyebrow">Services</p>
+    <h2>Three ways to work together</h2>
+    <div class="offers">
+      <article class="offer main">
+        <span class="tag">Monthly</span>
+        <h3>After-Hours Guest Desk</h3>
+        <p class="price">$1,000 <small>per month</small></p>
+        <ul>
+          <li>Up to 4 hours a night, 5 nights a week</li>
+          <li>Guest messages on Airbnb, Vrbo, Booking.com and your PMS</li>
+          <li>Lockouts, Wi-Fi, early check-in and late check-out requests</li>
+          <li>Urgent cleaning and maintenance coordination</li>
+          <li>Morning handoff report for your team</li>
+        </ul>
+        <p style="color:var(--muted);font-size:.9rem">Start with a 1-week trial for $250.</p>
+      </article>
+      <article class="offer">
+        <span class="tag">One-time</span>
+        <h3>Guest Messaging Setup</h3>
+        <p class="price">$400 <small>per company</small></p>
+        <ul>
+          <li>Up to 30 guest message templates in your voice</li>
+          <li>Check-in guide and house rules</li>
+          <li>Escalation plan: who handles what, and when</li>
+          <li>Delivered in 5 business days, one round of edits</li>
+        </ul>
+      </article>
+      <article class="offer">
+        <span class="tag">One-time</span>
+        <h3>Listing Tune-Up</h3>
+        <p class="price">$200 <small>per listing</small></p>
+        <ul>
+          <li>Rewritten title and description</li>
+          <li>House manual and arrival instructions</li>
+          <li>Photo order and amenity check</li>
+          <li>Delivered in 3 business days</li>
+        </ul>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <p class="eyebrow">How it starts</p>
+    <h2>From first call to first quiet night</h2>
+    <div class="steps">
+      <div class="step"><b>Step 1</b><h3>15-minute call</h3><p>We talk about your listings, your busiest message hours and what counts as urgent.</p></div>
+      <div class="step"><b>Step 2</b><h3>Access and handoff</h3><p>You add me as a user in your PMS. I never need your own password. We agree on an escalation contact.</p></div>
+      <div class="step"><b>Step 3</b><h3>Trial week</h3><p>I cover your nights for one week. You read every morning report and decide if it fits.</p></div>
+      <div class="step"><b>Step 4</b><h3>Monthly support</h3><p>Paid monthly in advance. Cancel with two weeks' notice.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <p class="eyebrow">Experience</p>
+    <h2>Six years doing exactly this</h2>
+    <div class="proof">
+      <div class="fact"><b>6 yrs</b><span>remote guest communication and operations for a Utah vacation rental company</span></div>
+      <div class="fact"><b>100+</b><span>listings supported across Airbnb, Booking.com and Vrbo</span></div>
+      <div class="fact"><b>200+</b><span>properties onboarded</span></div>
+      <div class="fact"><b>4</b><span>PMS platforms I've helped migrate and integrate</span></div>
+    </div>
+    <p class="tools">Tools I've used every day: Guesty, Escapia, Hostfully, YesBookit, Breezeway, BeHome, Airbnb, Vrbo, Booking.com, GoTo, Aloware, Google Workspace, Microsoft 365 and Slack. Before vacation rentals, I worked in hotel operations and as a flight attendant, and I hold an MBA.</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <p class="eyebrow">What you wake up to</p>
+    <h2>A sample morning report</h2>
+    <div class="report">
+<pre>MORNING HANDOFF · Tue · 3 listings active overnight
+
+RESOLVED
+ 11:42 PM  Cabin 7 · Guest couldn't open door. Reset code
+           via lock app, guest inside by 11:50 PM.
+ 01:15 AM  Lake House · Wi-Fi down. Router restarted with
+           guest on chat. Working.
+ 03:05 AM  Downtown Loft · Early check-in request for Fri.
+           Told guest we'll confirm by 2 PM Thu.
+
+NEEDS YOU TODAY
+ Downtown Loft · Approve early check-in (cleaner can
+ finish by 12 PM).
+ Cabin 7 · Lock battery low. Maintenance ticket opened.
+
+MESSAGES ANSWERED: 14 · AVERAGE FIRST REPLY: 6 MIN</pre>
+      <p class="cap">Example only. Your report follows the format your team prefers.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <p class="eyebrow">Questions</p>
+    <h2>Before you reach out</h2>
+    <div class="faq">
+      <details><summary>Where are you based?</summary><p>In the Philippines. US nights fall in my working day, so I'm fresh and focused while your team sleeps.</p></details>
+      <details><summary>Do you cover weekends?</summary><p>Yes. Weekend coverage is available. We choose your coverage days and hours together on our first call.</p></details>
+      <details><summary>How do you handle guest privacy?</summary><p>I work only inside your systems, with my own user account. Guest details stay there. I don't share or store them elsewhere.</p></details>
+      <details><summary>How do I pay?</summary><p>Monthly support is paid in advance. One-time projects are 50% upfront and 50% on delivery. I accept payment through Wise.</p></details>
+      <details><summary>What if something is a real emergency?</summary><p>We agree on your emergency contact and rules before I start. Safety issues go to your on-call person right away, every time.</p></details>
+    </div>
+  </div>
+</section>
+</main>
+
+<section class="close">
+  <div class="wrap">
+    <h2>Let's take nights off your plate</h2>
+    <p>Send me a message on LinkedIn with how many listings you manage and your busiest hours. I'll reply within one business day.</p>
+    <div class="cta"><a class="btn" href="https://www.linkedin.com/in/jyracapulac/" target="_blank" rel="noopener">Message me on LinkedIn</a></div>
+    <div class="copyrow"><code id="li">linkedin.com/in/jyracapulac</code><button type="button" id="copy">Copy link</button></div>
+  </div>
+</section>
+<footer><div class="wrap">Jyra Capulac · Remote guest support · Philippines</div></footer>
+<script>
+document.getElementById('copy').addEventListener('click',function(){
+  var b=this,t='https://www.linkedin.com/in/jyracapulac/';
+  (navigator.clipboard?navigator.clipboard.writeText(t):Promise.reject()).then(function(){b.textContent='Copied'},function(){
+    var r=document.createRange();r.selectNodeContents(document.getElementById('li'));var s=getSelection();s.removeAllRanges();s.addRange(r);b.textContent='Selected';});
+});
+</script>
+
+</body>
+</html>
